@@ -7,23 +7,22 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/1.3.2/css/weather-icons.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-	<script type="text/javascript" src="controller.js"></script>
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwxNkV3hhJZ3t4i-Lql4upaiRg17v4Tw4&libraries=places"></script>
 </head>
 
 <body ng-app="myApp" ng-controller="MainCtrl">
 	<div class="my-container">
 		<div class="main-info">
-			<div class="temp">{{temp}} &#176;<span class="unit" ng-click="changeUnit()">{{unit}}</span></div>
-
-			<textarea id="searchCityName" ng-model="searchCityName" placeholder="{{city}} {{country}}" autocomplete="on">
-
-			</textarea>
-			<p id="help">Click on the name of the town to find your city</p>
+			<div class="temp">{{temp}} &#176;<span class="unit" ng-click="changeUnit()">{{currentDegreeSystem}}</span></div>
+			<!--GOOGLE API поддерживает работу только с input'ом, но что бы не править верстку приложения для отображения многострочных названий сделан хотфикс с textarea, на работоспособность не влияет, но ругается в консоль-->
+			<!--Приношу извенения и обещаю более не использовать подобные решения-->
+			<textarea id="searchCityName" ng-model="searchCityName" placeholder="{{city}} {{country}}" autocomplete="on"></textarea>
+			<p id="help" ng-show="!searchCityName">Start typing your city...</p>
 		</div>
-		<div class="icon"><i ng-class="getIcon()"></i></div>
+		<div class="icon"><i ng-class="weatherIcon"></i></div>
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script type="text/javascript" src="controller.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwxNkV3hhJZ3t4i-Lql4upaiRg17v4Tw4&libraries=places"></script>
 </body>
 
 </html>
